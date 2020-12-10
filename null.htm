@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="description" content="ie=edge">
+    
+<title>Insulin Pump</title>
+<script type="text/javascript">
+
+
+
+var mins = 0;
+var secs = 5;
+
+var minutes, seconds;
+var sugerlevel = Math.floor(Math.random()*5 + 1);
+
+
+
+function countdown() {
+  setTimeout('Decrement()',1000);
+}
+
+function Decrement() {
+    
+    if (seconds < 59) {
+        seconds.value = secs;
+		 } else {
+        minutes.value = getminutes();
+        seconds.value = getseconds();
+    }
+    secs--;
+
+    console.log(minutes + ', ' + seconds);
+    if (seconds.value <= 0 && minutes.value <= 0) {
+		if (sugerlevel <=1){
+			alert('Suger level in blood is too low, please do a activity');
+			}
+			if (sugerlevel ==2){
+			alert('Suger level in blood is normal.');
+			}
+			if (sugerlevel >=3){
+			alert('Suger level in blood is too high.');
+			
+			}
+		var currentDate = new Date();
+		var month = currentDate.getMonth();
+		var day = currentDate.getDate();
+		var year = currentDate.getFullYear();
+		var fullDate = day + "/" + month + "/" + year;
+			
+			
+			function log(str){
+				
+		var html = "<p>" +str+ "</p>";
+		var logEl = document.getElementById("logbox");
+		logEl.innerHTML = html;		
+		}
+		log("Suger Level:   " + sugerlevel + " - Date: " + fullDate);
+		
+			
+
+		}
+     else {
+		setTimeout('Decrement()',1000);
+    }
+	
+	
+		
+}
+
+function getminutes() {
+  // minutes is seconds divided by 60
+  mins = Math.floor(secs / 60);
+  return mins;
+}
+
+function getseconds() {
+  // take mins remaining (as seconds)
+  return secs-Math.round(mins *60);
+}
+
+
+document.onreadystatechange = function() {if(document.readyState == "complete") {
+    minutes = document.getElementById("minutes");
+    seconds = document.getElementById("seconds");
+
+    countdown();
+  }
+ 
+ 	}
+
+	
+</script>
+
+
+
+</head>
+<body>
+<h1 id="text">Insulin Pump</h1>
+    <input id="minutes" type="text" style="width: 50px; border:none; background-color:none; font-size: 50px; font-weight:bold;">
+    <input id="seconds" type="text" style="width: 50px; border: none; background-color:none; font-size: 50px; font-weight: bold;">
+    <div id="logbox"></div>
+
+</body>
+
+
+
+<style> 
+
+
+
+
+</style>
+</html>
